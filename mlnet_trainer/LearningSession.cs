@@ -6,7 +6,7 @@ using Microsoft.ML.Trainers;
 using mlnet_trainer.Model;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace mlnet_trainer
 {
@@ -17,7 +17,6 @@ namespace mlnet_trainer
         private readonly List<ITrainerEstimator<ISingleFeaturePredictionTransformer<ModelParametersBase<float>>, ModelParametersBase<float>>> trainers =
             new List<ITrainerEstimator<ISingleFeaturePredictionTransformer<ModelParametersBase<float>>, ModelParametersBase<float>>>();
         private readonly Dictionary<string, ITransformer> trainedModels = new Dictionary<string, ITransformer>();
-        private readonly Dictionary<string, RegressionMetrics> regressionMetrics = new Dictionary<string, RegressionMetrics>();
 
         public LearningSession(
             MLContext mlContext,
@@ -50,8 +49,9 @@ namespace mlnet_trainer
         public IDataView LoadDataView(string path)
             => textLoader.Load(path);
 
-        public void TrainAndTest(IDataView trainingDataView, IDataView testDataView)
+        public IEnumerable<KeyValuePair<string, RegressionMetrics>> TrainAndEvaluate(IDataView trainingDataView, IDataView testDataView)
         {
+            var metrics = new Dictionary<string, RegressionMetrics>();
             foreach(var trainer in this.trainers)
             {
                 var pipeline = mlContext.Transforms.CopyColumns(inputColumnName: "G3", outputColumnName: "Label")
@@ -88,26 +88,36 @@ namespace mlnet_trainer
 
                 var predictionModel = trainedModel.Transform(testDataView);
                 var regMetrics = mlContext.Regression.Evaluate(predictionModel);
-                regressionMetrics.Add(trainer.GetType().Name, regMetrics);
+                metrics.Add(trainer.GetType().Name, regMetrics);
             }
-        }
 
-        public IEnumerable<KeyValuePair<string, RegressionMetrics>> RegressionMetrics => regressionMetrics;
+            return metrics;
+        }
 
         public IEnumerable<StudentPredictionModel> Predict(StudentTrainingModel model)
         {
             foreach(var trainedModel in trainedModels)
             {
-                var engine = trainedModel.Value.CreatePredictionEngine<StudentTrainingModel, StudentPredictionModel>(mlContext);
-                var predictedModel = engine.Predict(model);
+                var predictedModel = Predict(trainedModel.Value, model);
                 predictedModel.TrainerName = trainedModel.Key;
                 yield return predictedModel;
             }
         }
 
+        public StudentPredictionModel Predict(ITransformer trainedModel, StudentTrainingModel model)
+        {
+            var engine = trainedModel.CreatePredictionEngine<StudentTrainingModel, StudentPredictionModel>(mlContext);
+            return engine.Predict(model);
+        }
+
+        public ITransformer GetTrainedModel(string trainerName)
+        {
+            return trainedModels.FirstOrDefault(kvp => string.Equals(kvp.Key, trainerName)).Value;
+        }
+
         public static void OutputRegressionMetrics(string trainer, RegressionMetrics regMetrics)
         {
-            Console.WriteLine($"* {trainer}");
+            Console.WriteLine($"< {trainer} >");
             Console.WriteLine("*************************************");
             Console.WriteLine($" L1: {regMetrics.L1}");
             Console.WriteLine($" L2: {regMetrics.L2}");
