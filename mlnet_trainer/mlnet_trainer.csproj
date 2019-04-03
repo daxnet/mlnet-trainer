@@ -10,6 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\mlnet_model\mlnet_model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="student-mat-test.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

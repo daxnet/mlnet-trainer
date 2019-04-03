@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace mlnet_trainer.Model
+namespace mlnet_model
 {
     public class StudentPredictionModel
     {

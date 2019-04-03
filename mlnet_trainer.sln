@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.421
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mlnet_trainer", "mlnet_trainer\mlnet_trainer.csproj", "{27AB1F91-ABB3-47AA-8039-C72E337C92DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mlnet_trainer", "mlnet_trainer\mlnet_trainer.csproj", "{27AB1F91-ABB3-47AA-8039-C72E337C92DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mlnet_webapi", "mlnet_webapi\mlnet_webapi.csproj", "{F6E1C1CE-80A5-4904-B70D-EE0523EECAA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mlnet_model", "mlnet_model\mlnet_model.csproj", "{918B5552-2799-473F-88E3-A0B937FA9DC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{27AB1F91-ABB3-47AA-8039-C72E337C92DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27AB1F91-ABB3-47AA-8039-C72E337C92DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27AB1F91-ABB3-47AA-8039-C72E337C92DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6E1C1CE-80A5-4904-B70D-EE0523EECAA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6E1C1CE-80A5-4904-B70D-EE0523EECAA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6E1C1CE-80A5-4904-B70D-EE0523EECAA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6E1C1CE-80A5-4904-B70D-EE0523EECAA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{918B5552-2799-473F-88E3-A0B937FA9DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{918B5552-2799-473F-88E3-A0B937FA9DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{918B5552-2799-473F-88E3-A0B937FA9DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{918B5552-2799-473F-88E3-A0B937FA9DC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

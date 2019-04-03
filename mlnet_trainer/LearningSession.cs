@@ -3,7 +3,7 @@ using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Model;
 using Microsoft.ML.Trainers;
-using mlnet_trainer.Model;
+using mlnet_model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
