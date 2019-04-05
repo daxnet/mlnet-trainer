@@ -105,7 +105,10 @@ namespace mlnet_trainer
                             for (var idx = 0; idx < values.Length; idx++)
                             {
                                 var column = columns[idx];
-                                var fieldInfo = typeof(StudentTrainingModel).GetFields().FirstOrDefault(x => string.Equals(x.Name, column, StringComparison.InvariantCultureIgnoreCase));
+                                var fieldInfo = typeof(StudentTrainingModel)
+                                    .GetFields()
+                                    .FirstOrDefault(x => string.Equals(x.Name, column, StringComparison.InvariantCultureIgnoreCase));
+
                                 if (fieldInfo != null)
                                 {
                                     fieldInfo.SetValue(sample, ConvertValue(values[idx], fieldInfo.FieldType));

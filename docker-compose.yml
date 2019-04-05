@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mlnet_webapi:
+    image: daxnet/mlnet_webapi
+    build:
+      context: .
+      dockerfile: mlnet_webapi/Dockerfile
+    env_file:
+      - ./mlnet-webapi.env
+    container_name: mlnet_webapi
+    ports:
+      - 880:80
+      - 8443:443
