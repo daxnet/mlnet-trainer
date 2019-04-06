@@ -5,8 +5,12 @@ services:
     build:
       context: .
       dockerfile: mlnet_webapi/Dockerfile
-    env_file:
-      - ./mlnet-webapi.env
+    environment:
+      - BLOB_ACCOUNT_NAME=${BLOB_ACCOUNT_NAME}
+      - BLOB_DEFAULT_ENDPOINTS_PROTOCOL=${BLOB_DEFAULT_ENDPOINTS_PROTOCOL}
+      - BLOB_ENDPOINT_SUFFIX=${BLOB_ENDPOINT_SUFFIX}
+      - BLOB_ACCOUNT_KEY=${BLOB_ACCOUNT_KEY}
+      - Serilog__MinimumLevel=${Serilog__MinimumLevel:-Debug}
     container_name: mlnet_webapi
     ports:
       - 880:80
