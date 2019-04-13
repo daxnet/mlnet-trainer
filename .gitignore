@@ -331,3 +331,4 @@ ASALocalRun/
 
 # Docker Environment Files
 *.env
+mlnet_trainer/student_perf_model.zip
