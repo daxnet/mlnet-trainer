@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to find out which attributes exist for C# debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (mlnet_webapi)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build_mlnet_webapi",
+            "program": "${workspaceFolder}/mlnet_webapi/bin/Debug/netcoreapp2.2/mlnet_webapi.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            "launchBrowser": {
+                "enabled": true
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "BLOB_DEFAULT_ENDPOINTS_PROTOCOL": "V_BLOB_DEFAULT_ENDPOINTS_PROTOCOL",
+                "BLOB_ACCOUNT_NAME": "V_BLOB_ACCOUNT_NAME",
+                "BLOB_ACCOUNT_KEY": "V_BLOB_ACCOUNT_KEY",
+                "BLOB_ENDPOINT_SUFFIX": "V_BLOB_ENDPOINT_SUFFIX"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
+        },
+        {
+            "name": ".NET Core Launch (mlnet_trainer)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/mlnet_trainer/bin/Debug/netcoreapp2.2/mlnet_trainer.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/mlnet_trainer",
+            // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}

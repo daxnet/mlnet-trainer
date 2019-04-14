@@ -1,0 +1,44 @@
+apiVersion: v1
+items:
+- apiVersion: extensions/v1beta1
+  kind: Deployment
+  metadata:
+    name: mlnet-webapi-deployment
+  spec:
+    replicas: 2
+    template:
+      metadata:
+        labels:
+          app.name: mlnet
+      spec:
+        containers:
+          - image: daxnet/mlnet_webapi
+            name: mlnet-webapi
+            ports:
+            - containerPort: 80
+            env:
+            - name: BLOB_DEFAULT_ENDPOINTS_PROTOCOL
+              value: "V_BLOB_DEFAULT_ENDPOINTS_PROTOCOL"
+            - name: BLOB_ACCOUNT_NAME
+              value: "V_BLOB_ACCOUNT_NAME"
+            - name: BLOB_ACCOUNT_KEY
+              value: "V_BLOB_ACCOUNT_KEY"
+            - name: BLOB_ENDPOINT_SUFFIX
+              value: "V_BLOB_ENDPOINT_SUFFIX"
+        restartPolicy: Always
+- apiVersion: v1
+  kind: Service
+  metadata:
+    labels:
+      app.name: mlnet
+    name: mlnet-webapi-service
+  spec:
+    type: LoadBalancer
+    ports:
+      - name: "expose-80"
+        port: 80
+        targetPort: 80
+    selector:
+      app.name: mlnet
+kind: List
+metadata: {}
