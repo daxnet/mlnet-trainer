@@ -31,7 +31,7 @@
             "name": ".NET Core Launch (mlnet_trainer)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "build_mlnet_trainer",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/mlnet_trainer/bin/Debug/netcoreapp2.2/mlnet_trainer.dll",
             "args": [],

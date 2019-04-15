@@ -18,13 +18,25 @@ items:
             - containerPort: 80
             env:
             - name: BLOB_DEFAULT_ENDPOINTS_PROTOCOL
-              value: "V_BLOB_DEFAULT_ENDPOINTS_PROTOCOL"
+              valueFrom:
+                configMapKeyRef:
+                  name: mlnet-config
+                  key: BLOB_DEFAULT_ENDPOINTS_PROTOCOL
             - name: BLOB_ACCOUNT_NAME
-              value: "V_BLOB_ACCOUNT_NAME"
+              valueFrom:
+                configMapKeyRef:
+                  name: mlnet-config
+                  key: BLOB_ACCOUNT_NAME
             - name: BLOB_ACCOUNT_KEY
-              value: "V_BLOB_ACCOUNT_KEY"
+              valueFrom:
+                configMapKeyRef:
+                  name: mlnet-config
+                  key: BLOB_ACCOUNT_KEY
             - name: BLOB_ENDPOINT_SUFFIX
-              value: "V_BLOB_ENDPOINT_SUFFIX"
+              valueFrom:
+                configMapKeyRef:
+                  name: mlnet-config
+                  key: BLOB_ENDPOINT_SUFFIX
         restartPolicy: Always
 - apiVersion: v1
   kind: Service
