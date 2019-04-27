@@ -25,10 +25,7 @@ namespace mlnet_webapi.Controllers
 
         [HttpPost("predict")]
         public IActionResult Predict([FromBody] StudentTrainingModel model)
-        {
-            var prediction = predictionEngine.Predict(model);
-            return Ok(prediction);
-        }
+            => Ok(predictionEngine.Predict(model));
 
         [HttpGet("cred")]
         public IActionResult GetCredentialSettings()
